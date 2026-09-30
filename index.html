@@ -23,23 +23,23 @@ body{background:var(--espresso);color:var(--ink);font-family:Lora,Georgia,serif;
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--crema);outline-offset:3px}
 
-.logo{display:inline-flex;flex-direction:column;align-items:center;font-family:"Josefin Sans",sans-serif;font-weight:300;line-height:1;color:var(--milk);font-size:var(--s,1rem)}
-.logo small{font-size:.42em;letter-spacing:.42em;margin-right:-.42em;font-weight:400}
-.logo b{font-weight:300;font-size:1.7em;letter-spacing:.1em;margin-right:-.1em;margin-top:.45em;white-space:nowrap;display:inline-flex;align-items:baseline}
-.logo b .sp{display:inline-block;width:.45em}
-.logo small:last-child{margin-top:.8em}
-.lam{position:relative;display:inline-block;width:.8em;height:.75em;margin:0 .03em}
-.lam::before,.lam::after{content:"";position:absolute;left:50%;top:0;width:.075em;height:106%;background:currentColor;transform-origin:50% 0}
+.logo{display:inline-flex;flex-direction:column;align-items:center;font-family:"Josefin Sans",sans-serif;font-weight:300;line-height:1.1;color:var(--milk);font-size:var(--s,1rem);text-align:center}
+.logo small{font-size:.45em;letter-spacing:.5em;font-weight:400;text-transform:uppercase}
+.logo b{font-weight:300;font-size:1.6em;letter-spacing:.12em;white-space:nowrap;display:block;margin:.2em 0}
+.logo .line2{display:block;margin-top:.1em}
+.lam{position:relative;display:inline-block;width:.7em;height:.7em;margin:0 .02em;vertical-align:baseline}
+.lam::before,.lam::after{content:"";position:absolute;left:50%;top:0;width:.075em;height:104%;background:currentColor;transform-origin:50% 0}
 .lam::before{transform:translateX(-50%) rotate(-19deg)}
 .lam::after{transform:translateX(-50%) rotate(19deg)}
 
 header{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:calc(1rem + env(safe-area-inset-top,0px)) clamp(1rem,4vw,3rem) 1rem;background:linear-gradient(var(--espresso),rgba(36,20,13,0));color:var(--milk)}
-header .logo{--s:.62rem}
+header .logo{--s:.58rem;align-items:flex-start}
+@media(max-width:640px){header{justify-content:center}header .logo{align-items:center}}
 nav{display:flex;gap:clamp(1rem,3vw,2.4rem);font-weight:300;letter-spacing:.08em}
 nav a{position:relative;padding:.3rem 0}
 nav a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--crema);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.7,0,.2,1)}
 nav a:hover::after,nav a:focus-visible::after{transform:scaleX(1)}
-@media(max-width:640px){header{justify-content:center}nav{display:none}}
+@media(max-width:640px){nav{display:none}}
 
 .btn{position:relative;display:inline-block;overflow:hidden;isolation:isolate;padding:.95rem 2.2rem;border:1px solid var(--crema);color:var(--milk);font-weight:300;letter-spacing:.12em;font-size:1rem;transition:color .5s,letter-spacing .5s,border-color .5s;cursor:pointer;background:none}
 .btn::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--mocha),var(--crema) 60%,#e8b984);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.7,0,.2,1)}
@@ -74,9 +74,7 @@ h2{font-weight:200;font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.15;margin-bo
 .wrap{max-width:1100px;margin:auto}
 .about{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
 .about p+p{margin-top:1rem}
-.beans{aspect-ratio:1;border-radius:2px;background:
-  repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.07) 46px 47px),
-  linear-gradient(160deg,var(--mocha),var(--espresso));position:relative;overflow:hidden;display:grid;place-items:center}
+.beans{aspect-ratio:1;border-radius:2px;background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(255,255,255,.07) 46px 47px),linear-gradient(160deg,var(--mocha),var(--espresso));position:relative;overflow:hidden;display:grid;place-items:center}
 .beans span{font-family:"Josefin Sans";font-weight:200;color:var(--latte);font-size:clamp(1.6rem,3vw,2.4rem);text-align:center;line-height:1.2;padding:1rem;transition:letter-spacing .8s}
 .beans:hover span{letter-spacing:.08em}
 .beans::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(201,146,90,.35),transparent);transform:translateX(-101%);transition:transform .9s cubic-bezier(.7,0,.2,1)}
@@ -106,43 +104,18 @@ h2{font-weight:200;font-size:clamp(1.9rem,4vw,3.2rem);line-height:1.15;margin-bo
 .order .btn{flex:1 1 170px;padding:1.1rem 1rem;text-align:center}
 .order .btn.main{flex-basis:100%;font-size:1.15rem;padding:1.3rem 1rem;background:color-mix(in srgb,var(--crema) 18%,transparent)}
 
-
-dialog{border:0;padding:0;width:min(560px,92vw);background:var(--espresso);color:var(--milk);box-shadow:0 30px 80px rgba(0,0,0,.6);max-height:92svh;overflow:auto}
-dialog::backdrop{background:rgba(20,10,5,.72);backdrop-filter:blur(3px)}
-dialog[open]{animation:pop .5s cubic-bezier(.2,.8,.2,1)}
-@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.97)}}
-.dlg{padding:clamp(1.4rem,4vw,2.4rem);display:grid;gap:1.1rem}
-.dlg h3{font-weight:200;font-size:1.8rem}
-.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--crema)}
-.seg label{position:relative;isolation:isolate;overflow:hidden;text-align:center;padding:.8rem;cursor:pointer;font-family:"Josefin Sans";letter-spacing:.08em;font-weight:300;transition:color .4s}
-.seg label::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--mocha),var(--crema));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.7,0,.2,1)}
-.seg input{position:absolute;opacity:0}
-.seg label:has(input:checked)::before,.seg label:hover::before{transform:scaleX(1)}
-.seg label:has(input:checked){color:var(--espresso)}
-.seg label:has(input:focus-visible){outline:2px solid var(--crema);outline-offset:2px}
-.f{display:grid;gap:.35rem;font-family:"Josefin Sans";font-weight:300;letter-spacing:.05em}
-.f input,.f textarea{font:inherit;font-family:Lora,serif;letter-spacing:0;color:var(--milk);background:rgba(255,255,255,.06);border:1px solid rgba(227,210,184,.35);padding:.7rem .8rem;border-radius:0;transition:border-color .3s,background .3s}
-.f input:focus,.f textarea:focus{outline:none;border-color:var(--crema);background:rgba(201,146,90,.12)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.acts{display:flex;gap:1rem;flex-wrap:wrap}
-.acts .btn{flex:1 1 180px;text-align:center}
-.hint{font-size:.85rem;color:var(--latte);opacity:.8}
-@media(max-width:520px){.two{grid-template-columns:1fr}}
-
 footer{background:var(--espresso);color:var(--latte);text-align:center;padding:4rem 1rem calc(3rem + env(safe-area-inset-bottom,0px))}
 footer .logo{--s:.9rem;margin-bottom:1.6rem}
-footer .soc{display:flex;gap:2rem;justify-content:center;margin-bottom:1.5rem}
-footer .soc a{position:relative;font-family:"Josefin Sans";font-weight:300;letter-spacing:.1em}
-footer .soc a::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;background:var(--crema);transform:scaleX(0);transform-origin:left;transition:transform .45s}
-footer .soc a:hover::after{transform:scaleX(1)}
+footer .soc{display:flex;gap:2rem;justify-content:center;margin-bottom:1.5rem;align-items:center}
+footer .soc a{position:relative;isolation:isolate;overflow:hidden;font-family:"Josefin Sans";font-weight:300;letter-spacing:.1em;padding:.5rem 1rem;border-radius:4px;transition:color .45s}
+footer .soc a::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--mocha),var(--crema) 60%,#e8b984);transform:scaleX(0);transform-origin:left;transition:transform .55s cubic-bezier(.7,0,.2,1)}
+footer .soc a:hover,footer .soc a:focus-visible{color:var(--espresso)}
+footer .soc a:hover::before,footer .soc a:focus-visible::before{transform:scaleX(1)}
 footer small{opacity:.6}
-footer .soc{align-items:center}
-footer .soc .ico{position:relative;isolation:isolate;overflow:hidden;width:46px;height:46px;border:1px solid var(--crema);border-radius:50%;display:grid;place-items:center;color:var(--latte);transition:color .5s,border-color .5s,transform .5s}
-footer .soc .ico::after{display:none}
+footer .soc .ico{position:relative;isolation:isolate;overflow:hidden;width:46px;height:46px;border:1px solid var(--crema);border-radius:50%;display:grid;place-items:center;color:var(--latte);padding:0;transition:color .5s,border-color .5s,transform .5s}
 footer .soc .ico::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--mocha),var(--crema) 60%,#e8b984);transform:scaleX(0);transform-origin:left;transition:transform .6s cubic-bezier(.7,0,.2,1)}
 footer .soc .ico:hover,footer .soc .ico:focus-visible{color:var(--espresso);border-color:transparent;transform:translateY(-3px)}
 footer .soc .ico:hover::before,footer .soc .ico:focus-visible::before{transform:scaleX(1)}
-
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.steam path{opacity:.25}}
 </style>
@@ -151,15 +124,16 @@ footer .soc .ico:hover::before,footer .soc .ico:focus-visible::before{transform:
 
 <header>
   <a href="#top" class="logo" aria-label="Kawiarnia Fabryczna – Warszawa, Powiśle">
-    <small>WARSZAWA</small>
-    <b aria-hidden="true">K<i class="lam"></i>WI<i class="lam"></i>RNI<i class="lam"></i><span class="sp"></span>F<i class="lam"></i>BRYCZN<i class="lam"></i></b>
-    <small>POWIŚLE</small>
+    <small>Warszawa</small>
+    <b>K<i class="lam"></i>WI<i class="lam"></i>RNI<i class="lam"></i></b>
+    <b class="line2">F<i class="lam"></i>BRYCZN<i class="lam"></i></b>
+    <small>Powiśle</small>
   </a>
   <nav>
     <a href="#o-nas">O nas</a>
     <a href="#menu">Menu</a>
-    <a href="#zamow" class="keep">Zamów</a>
-    <a href="#odwiedz" class="keep">Odwiedź nas</a>
+    <a href="#zamow">Zamów</a>
+    <a href="#odwiedz">Odwiedź nas</a>
   </nav>
 </header>
 
@@ -243,15 +217,15 @@ footer .soc .ico:hover::before,footer .soc .ico:focus-visible::before{transform:
   <div class="wrap">
     <h2>Menu</h2>
     <ul class="menu">
-      <li><div><h3>Espresso</h3><p>Klasyczna kawa z ekspresu</p></div><span class="price">XYZ zł</span></li>
-      <li><div><h3>Cappuccino i latte</h3><p>Kawa z mlekiem, także z mlekiem owsianym</p></div><span class="price">15 zł</span></li>
-      <li><div><h3>Flat white</h3><p>Jedna z kawiarnianych klasyków</p></div><span class="price">XYZ zł</span></li>
+      <li><div><h3>Espresso</h3><p>Klasyczna kawa z ekspresu</p></div><span class="price">12 zł</span></li>
+      <li><div><h3>Cappuccino i latte</h3><p>Kawa z mlekiem, także z mlekiem owsianym</p></div><span class="price">16 zł</span></li>
+      <li><div><h3>Flat white</h3><p>Jedna z kawiarnianych klasyków</p></div><span class="price">17 zł</span></li>
       <li><div><h3>Kawa przelewowa</h3><p>Chemex i inne metody, parzone na zamówienie</p></div><span class="price">18 zł</span></li>
-      <li><div><h3>Shakshuka</h3><p>Jajka w sosie pomidorowym</p></div><span class="price">XYZ zł</span></li>
-      <li><div><h3>Chleb z awokado i jajkiem</h3><p>Śniadanie na ciepło</p></div><span class="price">XYZ zł</span></li>
-      <li><div><h3>Jajecznica ze szpinakiem</h3><p>Prosta, ale z ciekawym dodatkiem</p></div><span class="price">XYZ zł</span></li>
-      <li><div><h3>Banana bread</h3><p>Domowy wypiek do kawy</p></div><span class="price">XYZ zł</span></li>
-      <li><div><h3>Cynamonowe wypieki</h3><p>Słodki dodatek do popołudniowej kawy</p></div><span class="price">XYZ zł</span></li>
+      <li><div><h3>Shakshuka</h3><p>Jajka w sosie pomidorowym</p></div><span class="price">32 zł</span></li>
+      <li><div><h3>Chleb z awokado i jajkiem</h3><p>Śniadanie na ciepło</p></div><span class="price">28 zł</span></li>
+      <li><div><h3>Jajecznica ze szpinakiem</h3><p>Prosta, ale z ciekawym dodatkiem</p></div><span class="price">26 zł</span></li>
+      <li><div><h3>Banana bread</h3><p>Domowy wypiek do kawy</p></div><span class="price">15 zł</span></li>
+      <li><div><h3>Cynamonowe wypieki</h3><p>Słodki dodatek do popołudniowej kawy</p></div><span class="price">16 zł</span></li>
     </ul>
   </div>
 </section>
@@ -259,9 +233,9 @@ footer .soc .ico:hover::before,footer .soc .ico:focus-visible::before{transform:
 <section class="order" id="zamow">
   <div class="wrap">
     <h2>Zamów kawę</h2>
-    <p>Zamów na wynos albo zarezerwuj stolik: przez formularz lub telefonicznie.</p>
+    <p>Zamów na wynos albo zarezerwuj stolik przez zewnętrzne platformy lub kontakt bezpośredni.</p>
     <div class="btns">
-      <button type="button" class="btn main" id="openOrder">Przejdź do składania zamówienia lub rezerwacji</button>
+      <a class="btn main" href="#" target="_blank" rel="noopener">Zarezerwuj stolik online / Zamów</a>
       <a class="btn" href="tel:+48692431717">Zadzwoń: 692 431 717</a>
       <a class="btn" href="mailto:espresso@kawiarniafabryczna.pl">Napisz e-mail</a>
       <a class="btn" href="#odwiedz">Jak trafić</a>
@@ -289,53 +263,18 @@ footer .soc .ico:hover::before,footer .soc .ico:focus-visible::before{transform:
 
 <footer>
   <div class="logo" role="img" aria-label="Kawiarnia Fabryczna – Warszawa, Powiśle">
-    <small>WARSZAWA</small>
-    <b aria-hidden="true">K<i class="lam"></i>WI<i class="lam"></i>RNI<i class="lam"></i><span class="sp"></span>F<i class="lam"></i>BRYCZN<i class="lam"></i></b>
-    <small>POWIŚLE</small>
+    <small>Warszawa</small>
+    <b>K<i class="lam"></i>WI<i class="lam"></i>RNI<i class="lam"></i></b>
+    <b class="line2">F<i class="lam"></i>BRYCZN<i class="lam"></i></b>
+    <small>Powiśle</small>
   </div>
-  <div class="soc"><a href="tel:+48692431717">692 431 717</a><a class="ico" href="https://www.instagram.com/kawiarniafabryczna/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a></div>
+  <div class="soc">
+    <a href="tel:+48692431717">692 431 717</a>
+    <a class="ico" href="https://www.instagram.com/kawiarniafabryczna/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+  </div>
   <small>© 2026 Kawiarnia Fabryczna</small>
+  <small>Wykonanie: <b>RAKSO Web Development</b></small>
 </footer>
 
-<dialog id="dlg" aria-labelledby="dt">
-  <div class="dlg">
-    <h3 id="dt">Zamówienie lub rezerwacja</h3>
-    <div class="seg" role="radiogroup" aria-label="Rodzaj">
-      <label><input type="radio" name="kind" value="order" checked>Zamówienie na wynos</label>
-      <label><input type="radio" name="kind" value="res">Rezerwacja stolika</label>
-    </div>
-    <label class="f">Imię<input id="fn" autocomplete="given-name"></label>
-    <div class="two">
-      <label class="f">Telefon<input id="fp" type="tel" autocomplete="tel"></label>
-      <label class="f">Data i godzina<input id="fd" type="datetime-local"></label>
-    </div>
-    <label class="f" id="gw" hidden>Liczba osób<input id="fg" type="number" min="1" max="12" value="2"></label>
-    <label class="f"><span id="fl">Co zamawiasz?</span><textarea id="ft" rows="3"></textarea></label>
-    <div class="acts">
-      <button type="button" class="btn" id="send">Wyślij</button>
-      <button type="button" class="btn" id="close">Zamknij</button>
-    </div>
-    <p class="hint">Wyślij otworzy SMS do kawiarni z Twoimi danymi. Wolisz zadzwonić? 692 431 717.</p>
-  </div>
-</dialog>
-<script>
-(function(){
-  var d=document.getElementById('dlg'),$=function(i){return document.getElementById(i)};
-  function mode(){return document.querySelector('input[name=kind]:checked').value}
-  function sync(){var r=mode()==='res';$('gw').hidden=!r;$('fl').textContent=r?'Uwagi do rezerwacji':'Co zamawiasz?'}
-  document.querySelectorAll('input[name=kind]').forEach(function(e){e.addEventListener('change',sync)});
-  $('openOrder').addEventListener('click',function(){d.showModal()});
-  $('close').addEventListener('click',function(){d.close()});
-  d.addEventListener('click',function(e){if(e.target===d)d.close()});
-  $('send').addEventListener('click',function(){
-    var r=mode()==='res',n=$('fn').value.trim(),p=$('fp').value.trim();
-    if(!n||!p){(n?$('fp'):$('fn')).focus();return}
-    var l=[(r?'Rezerwacja stolika':'Zamówienie na wynos'),'Imię: '+n,'Telefon: '+p,'Termin: '+($('fd').value||'jak najszybciej')];
-    if(r)l.push('Liczba osób: '+$('fg').value);
-    l.push((r?'Uwagi: ':'Zamówienie: ')+$('ft').value);
-    location.href='sms:+48692431717?&body='+encodeURIComponent(l.join('\n'));
-  });
-})();
-</script>
 </body>
 </html>
